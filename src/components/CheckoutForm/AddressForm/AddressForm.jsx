@@ -24,17 +24,28 @@ const AddressForm = ({ checkoutToken }) => {
   const [shippingOption, setShippingOption] = useState('');
 
   const fetchShippingCountries = async (checkoutTokenId) => {
-    const { countries } = await commerce.services.locateListShippingCountries(checkoutTokenId);
+    const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
     setShippingCountries(countries);
     setShippingCounttry(Object.keys(countries)[0]);
   }
 
   // Object.entries: Convert from an Object into an Array | Map: Convert into a normal Array
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name}));
+  const subdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({ id: code, label: name}));
+
+  const fetchSubdivisions = async(countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+    setShippingSubdivisions(subdivisions);
+    setShippingSubdivision(Object.keys(subdivisions)[0]);
+  }
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
   }, []);
+
+  useEffect(() => {
+    if (shippingCountry) fetchSubdivisions(shippingCounttry);
+  }, [shippingCountry]);
 
   return (
     <>
@@ -66,13 +77,15 @@ const AddressForm = ({ checkoutToken }) => {
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select 
-                value={}
+                value={shippingSubdivision}
                 fullWidth
-                onChange={}
+                onChange={(e) => setShippingSubdivision(e.target.value)}
               >
-                <MenuItem key={} value={}>
-                  Select Me
-                </MenuItem>
+                {subdivisions.map((subdivision) => (
+                  <MenuItem key={subdivision.id} value={subdivision.id}>
+                    {subdivision.label}
+                  </MenuItem>
+                ))}
               </Select>
             </Grid>
 
