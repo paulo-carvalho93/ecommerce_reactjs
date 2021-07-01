@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Grid,
   Container,
@@ -15,6 +16,7 @@ const Cart = ({ cart }) => {
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       Oops! You don't have items in your shopping cart yet!
+        <Link to="/" className={classes.link}>Do some shopping!</Link>
     </Typography>
   );
 
