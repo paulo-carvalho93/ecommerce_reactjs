@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import { commerce } from '../../lib/commerce';
+import { commerce } from '../../../lib/commerce';
 
 import FormInput from '../FormInput/FormInput';
 
@@ -57,7 +57,7 @@ const AddressForm = ({ checkoutToken, next }) => {
   }, [shippingCountry]);
 
   useEffect(() => {
-    if (shippingSubdivision) fetchShippingOptions(checkoutTokenId, shippingCountry, shippingSubdivision);
+    if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
   }, [shippingSubdivision]);
 
   return (
@@ -68,12 +68,12 @@ const AddressForm = ({ checkoutToken, next }) => {
           next({ ...data, shippingCountry, shippingSubdivision, shippingOption }))}
         >
           <Grid container spacing={3}>
-            <FormInput name={firstName} label='First name' />
-            <FormInput name={lastName} label='Last name' />
-            <FormInput name={address1} label='Address' />
-            <FormInput name={email} label='E-mail' />
-            <FormInput name={city} label='City' />
-            <FormInput name={zip} label='ZIP / Postal Code' />
+            <FormInput name='firstName' label='First name' />
+            <FormInput name='lastName' label='Last name' />
+            <FormInput name='address1' label='Address' />
+            <FormInput name='email' label='E-mail' />
+            <FormInput name='city' label='City' />
+            <FormInput name='zip' label='ZIP / Postal Code' />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select 

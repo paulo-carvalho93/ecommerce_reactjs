@@ -21,11 +21,11 @@ const Cart = ({
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       Oops! You don't have items in your shopping cart yet!
-        <Link to="/" className={classes.link}>Do some shopping!</Link>
+        <Link to="/" className={classes.link}> Do some shopping!</Link>
     </Typography>
   );
 
-  const filledCart = () => (
+  const FilledCart = () => (
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
@@ -74,7 +74,7 @@ const Cart = ({
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>
+      <Typography className={classes.title} variant="h4" gutterBottom>
         Your Shopping Cart
       </Typography>
       { !cart.line_items.length ? <EmptyCart /> : <FilledCart />}

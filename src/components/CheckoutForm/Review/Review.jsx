@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typograghy,
+  Typography,
   List,
   ListItem,
   ListItemText
@@ -9,7 +9,7 @@ import {
 const Review = ({ checkoutToken }) => {
   return (
     <>
-      <Typograghy variant="h6" gutterBottom>Order Summary</Typograghy>
+      <Typography variant="h6" gutterBottom>Order Summary</Typography>
       <List disablePading>
         {checkoutToken.live.line_items.map((product) => (
           <ListItem style={{ padding: '10px 0' }} key={product.name}>
@@ -19,9 +19,9 @@ const Review = ({ checkoutToken }) => {
         ))}
         <ListItem style={{ padding: '10px 0' }}>
           <ListItemText primary="Total" />
-          <Typograghy variant="subtitle1" style={{ fontWeight: 700}}>
+          <Typography variant="subtitle1" style={{ fontWeight: 700}}>
             {checkoutToken.live.subtotal.formatted_with_symbol}
-          </Typograghy>
+          </Typography>
         </ListItem>
       </List>
     </>

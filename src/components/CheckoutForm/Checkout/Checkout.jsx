@@ -22,12 +22,12 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
-  const [shippingData, setShippingData] = useSatate({});
+  const [shippingData, setShippingData] = useState({});
 
   useEffect(() => {
     const generateToken = async () => {
       try {
-        const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
+        const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
         setCheckoutToken(token);
       } catch (error) {
         
