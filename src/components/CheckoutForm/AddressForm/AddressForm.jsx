@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import {
   Grid,
@@ -9,9 +9,11 @@ import {
   Typography
 } from '@material-ui/core';
 
+import { commerce } from '../../lib/commerce';
+
 import FormInput from '../FormInput/FormInput';
 
-const AddressForm = () => {
+const AddressForm = ({ checkoutToken }) => {
   const methods = useForm();
 
   const [shippingCountries, setShippingCountries] = useState([]);
@@ -21,7 +23,18 @@ const AddressForm = () => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState('');
 
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.locateListShippingCountries(checkoutTokenId);
+    setShippingCountries(countries);
+    setShippingCounttry(Object.keys(countries)[0]);
+  }
 
+  // Object.entries: Convert from an Object into an Array | Map: Convert into a normal Array
+  const countries = Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name}));
+
+  useEffect(() => {
+    fetchShippingCountries(checkoutToken.id);
+  }, []);
 
   return (
     <>
@@ -38,13 +51,15 @@ const AddressForm = () => {
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select 
-                value={}
+                value={shippingCounttry}
                 fullWidth
-                onChange={}
+                onChange={(e) => setShippingCounttry(e.target.value)}
               >
-                <MenuItem key={} value={}>
-                  Select Me
-                </MenuItem>
+                {countries.map((country) => (
+                  <MenuItem key={country.id} value={country.id}>
+                    {country.label}
+                  </MenuItem>
+                ))}
               </Select>
             </Grid>
 
