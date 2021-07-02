@@ -11,7 +11,7 @@ import Review from '../Review/Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ checkoutToken, shippingData, nextStep, backStep, onCaptureCheckout }) => {
+const PaymentForm = ({ checkoutToken, shippingData, nextStep, backStep, onCaptureCheckout, timeout }) => {
 
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
@@ -27,8 +27,8 @@ const PaymentForm = ({ checkoutToken, shippingData, nextStep, backStep, onCaptur
       const orderDataPayload = {
         line_items: checkoutToken.live.line_items,
         customer: { 
-          firstName: shippingData.firstName,
-          lastName: shippingData.lastName,
+          firstname: shippingData.firstName,
+          lastname: shippingData.lastName,
           email: shippingData.email,
         },
         shipping: {
@@ -39,7 +39,7 @@ const PaymentForm = ({ checkoutToken, shippingData, nextStep, backStep, onCaptur
           postal_zip_code: shippingData.zip,
           country: shippingData.shippingCountry,
         },
-        fullfillment: { shipping_method: shippingData.shippingOption },
+        fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {
           gateway: 'stripe',
           stripe: {
@@ -48,6 +48,7 @@ const PaymentForm = ({ checkoutToken, shippingData, nextStep, backStep, onCaptur
         }
       }
       onCaptureCheckout(checkoutToken.id, orderDataPayload);
+      timeout();
       nextStep();
     }
   }
