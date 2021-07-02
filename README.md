@@ -9,7 +9,7 @@
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/paulo-carvalho93/ecommerce_reactjs">
 </p>
 
-**eCommerce - ReactJS** is a project that uses API from ChecIO called commerce.js that help to create in an easy way your eCommerce Store and Stripe for Payments activities.
+**eCommerce - ReactJS** is a project that uses an API from ChecIO called commerce.js that helps to create in an easy way your eCommerce Store and Stripe for Payments activities.
 
 The idea of this mini project is just to boost my abilities with React.js and Material UI.
 
@@ -39,7 +39,7 @@ The idea of this mini project is just to boost my abilities with React.js and Ma
 
 Access:
 
-[eCommerce - ReactJS]()
+[eCommerce - ReactJS](https://ecommerce-reactjs-three.vercel.app/)
 
 
 ## Summary
@@ -65,7 +65,7 @@ Access:
 
 ## :computer: Application
 
-The application was developed with [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) using the framework [ReactJS](https://reactjs.org/) and [Material-UI](https://material-ui.com/) for design proposes. Also, the main ideia here is to use the [Commerce.JS](https://commercejs.com/) which allows having the flexibility to build better shopping experiences. Their Dashboard has all the facilities to create Products in an easy way and manage all the orders. Finally, I'm using [Stripe](https://commercejs.com/) to create fake credit card transactions as the method of payment at the Checkout step.
+The application was developed with [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) using the framework [ReactJS](https://reactjs.org/) and [Material-UI](https://material-ui.com/) for design proposes. Also, the main ideia here is to use the [Commerce.JS](https://commercejs.com/) which allows having the flexibility to build better shopping experiences. Their Dashboard has all the facilities to create Products in an easy way and manage all the orders. Finally, at the Checkout Form, I'm using [React Hook Form](https://react-hook-form.com/) for holding all the customer information such as contact/address and [Stripe](https://commercejs.com/) to create fake credit card transactions as the method of payment.
 
 ---
 
@@ -87,7 +87,7 @@ Clone the repository:
 You need to set the API keys from [Commerce.JS](https://commercejs.com/) and [Stripe](https://stripe.com/).
 Just make your account at both APIs and copy the public key from Sandbox of each one. 
 
-After that, just create an .env file and input the follow enviroment variables inside:
+After that, just create a .env file and input the following environment variables inside:
 
 ```sh
   $ REACT_APP_CHEC_PUBLIC_KEY=YOUR_KEY
