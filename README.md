@@ -14,7 +14,7 @@
 The idea of this mini project is just to boost my abilities with React.js and Material UI.
 
 <p align="center">
-  <img alt="screenshot" width="650px" src="./.github/assets/ecommerce_print.png" />
+  <img alt="screenshot" width="650px" src="./.github/assets/print.png" />
 <p>
 
 </div>
